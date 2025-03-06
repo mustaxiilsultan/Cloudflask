@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My World</title>
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Georgia', serif;
+            background: #000;
+        }
+
+        /* Background Video */
+        #background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* Container for Name and Registration */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 40px;
+            border: 6px double #f1c40f;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
+            color: #ecf0f1;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: #f1c40f;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: glow 2s infinite alternate;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin: 10px 0;
+            color: #f1c40f;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Styling */
+        .quote {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            font-style: italic;
+            color: #bdc3c7;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Moving Emojis */
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        /* Keyframes for Animations */
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #f1c40f; }
+            100% { text-shadow: 0 0 20px #f1c40f, 0 0 30px #f1c40f; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video id="background-video" autoplay loop muted>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Container for Name and Registration -->
+    <div class="container">
+        <h1>ABDIFATAH SOANE AHMED</h1>
+        <h2>23/07836</h2>
+        <p class="quote">
+            "In the grand tapestry of existence, your presence is a vibrant thread, weaving tales of triumph and joy. Welcome to this digital haven, where every click is a step towards serendipity and every moment is a celebration of your unique essence. 🚀✨"
+        </p>
+    </div>
+
+    <!-- Moving Emojis -->
+    <div class="emoji" style="top: 10%; left: 5%;">🚗</div>
+    <div class="emoji" style="top: 20%; left: 80%;">🌟</div>
+    <div class="emoji" style="top: 50%; left: 10%;">🔥</div>
+    <div class="emoji" style="top: 70%; left: 90%;">💻</div>
+    <div class="emoji" style="top: 90%; left: 50%;">🎉</div>
+</body>
+</html>
