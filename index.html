@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Storage System</title>
+    <!-- Google Fonts for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 2rem;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            margin-bottom: 2rem;
+        }
+
+        .form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 70%;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .upload-btn {
+            background: #28a745;
+            color: #fff;
+        }
+
+        .upload-btn:hover {
+            background: #218838;
+        }
+
+        /* File List Section */
+        .file-list {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .file-list h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .file-name {
+            flex: 1;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        .update-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .update-btn {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .update-btn:hover {
+            background: #e0a800;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        .delete-btn:hover {
+            background: #c82333;
+        }
+
+        /* Background Animation */
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 10%, transparent 10.01%);
+            background-size: 20px 20px;
+            z-index: -1;
+            animation: moveBackground 10s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-200px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cloud Storage System</h1>
+        <p class="subtitle">Upload, Update, and Manage Your Files</p>
+
+        <!-- Upload Section -->
+        <div class="upload-section">
+            <form action="{{ url_for('upload') }}" method="post" class="form">
+                <input type="text" name="filename" placeholder="Enter filename to upload" required>
+                <button type="submit" class="btn upload-btn">Upload</button>
+            </form>
+        </div>
+
+        <!-- File List Section -->
+        <div class="file-list">
+            <h2>Stored Files</h2>
+            <ul>
+                {% for index, file in enumerate(files) %}
+                <li class="file-item">
+                    <span class="file-name">{{ file }}</span>
+                    <!-- Update Form -->
+                    <form action="{{ url_for('update', index=index) }}" method="post" class="update-form">
+                        <input type="text" name="new_filename" placeholder="New filename" required>
+                        <button type="submit" class="btn update-btn">Update</button>
+                    </form>
+                    <!-- Delete Button -->
+                    <a href="{{ url_for('delete', index=index) }}" class="btn delete-btn">Delete</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Background Animation -->
+    <div class="background-animation"></div>
+</body>
+</html>
